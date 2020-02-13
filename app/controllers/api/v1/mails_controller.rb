@@ -15,6 +15,10 @@ class Api::V1::MailsController < ApplicationController
         @mails = []
         imap.fetch(ids, "RFC822").each do |mail|
             m = Mail.new(mail.attr["RFC822"])
+            subject = m.subject
+            if  subject.index("SEL,") == nil
+                next
+            end
             if m.multipart?
                 if m.html_part
                     @mails.push({ 
