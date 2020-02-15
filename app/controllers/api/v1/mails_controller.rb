@@ -42,6 +42,6 @@ class Api::V1::MailsController < ApplicationController
             end
         end
         @reversedMails = mails.reverse
-        render json: { status: 'success', message: 'loaded latest 20 mails', data: @reversedMails[0..19]}
+        render json: { status: 'success', message: 'loaded latest 20 mails', data: @reversedMails}
     end
 end
