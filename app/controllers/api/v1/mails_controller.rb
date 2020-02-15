@@ -16,6 +16,9 @@ class Api::V1::MailsController < ApplicationController
         imap.fetch(ids, "RFC822").each do |mail|
             m = Mail.new(mail.attr["RFC822"])
             subject = m.subject
+            if  @mail.size >= 20
+                break
+            end
             if  subject.index("SEL,") == nil
                 next
             end
